@@ -3523,21 +3523,135 @@ function HowItWorksSection() {
   );
 }
 
+// /* ============================================================
+//    VIDEOS — ONLY 2 VIDEOS
+//    ============================================================ */
+
+// function VideosSection() {
+//   return (
+//     <section
+//       id="videos"
+//       className="bg-white py-16 sm:py-20 lg:py-24"
+//     >
+//       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+//         {/* Heading */}
+//         <div className="scroll-reveal mx-auto max-w-3xl text-center">
+//           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-700 ring-1 ring-brand-100">
+//             <Play className="h-3.5 w-3.5" />
+//             Video Guide
+//           </span>
+
+//           <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+//             BazaarBook ko video mein samjhein 🎬
+//           </h2>
+
+//           <p className="mt-4 text-lg text-slate-600">
+//             Pehle short features video dekhein, phir complete app demo.
+//           </p>
+//         </div>
+
+//         {/* TWO VIDEO CARDS */}
+//         <div className="mt-12 grid items-start gap-8 lg:grid-cols-2">
+//           {VIDEOS.map((video, index) => {
+//             const isVertical = video.aspect === 'vertical';
+
+//             return (
+//               <div
+//                 key={video.title}
+//                 className={`scroll-reveal ${
+//                   index === 1 ? 'scroll-reveal-delay-1' : ''
+//                 }`}
+//               >
+//                 {/* Video Card */}
+//                 <div className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-lg">
+//                   {/* Video */}
+//                   <div
+//                     className={`relative w-full overflow-hidden bg-slate-950 ${
+//                       isVertical
+//                         ? 'mx-auto aspect-[9/16] max-w-[360px]'
+//                         : 'aspect-video'
+//                     }`}
+//                   >
+//                     <iframe
+//                       src={`https://www.youtube.com/embed/${video.youtubeId}`}
+//                       title={video.title}
+//                       className="absolute inset-0 h-full w-full border-0"
+//                       loading="lazy"
+//                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                       allowFullScreen
+//                     />
+//                   </div>
+
+//                   {/* Video Info */}
+//                   <div className="p-5 sm:p-6">
+//                     <div className="flex items-start gap-3">
+//                       <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
+//                         <Play className="h-5 w-5 fill-current" />
+//                       </div>
+
+//                       <div>
+//                         <h3 className="font-display text-lg font-bold text-slate-900">
+//                           {video.title}
+//                         </h3>
+
+//                         <p className="mt-1 text-sm leading-relaxed text-slate-600">
+//                           {video.description}
+//                         </p>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             );
+//           })}
+//         </div>
+
+//         {/* Small note */}
+//         <p className="scroll-reveal mt-8 text-center text-xs text-slate-400">
+//           Videos directly BazaarBook landing page par play honge.
+//         </p>
+//       </div>
+//     </section>
+//   );
+// }
+
 /* ============================================================
-   VIDEOS — ONLY 2 VIDEOS
+   VIDEOS — PREMIUM CUSTOM PLAYER
    ============================================================ */
 
 function VideosSection() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  const VIDEOS = [
+    {
+      title: 'BazaarBook Features',
+      description: 'BazaarBook ke important features ko short video mein dekhein.',
+      youtubeId: 'JVdS9PRKSnI',
+      aspect: 'vertical' as const,
+      duration: '2:15',
+      badge: 'Features Tour',
+      emoji: '🎬',
+      stats: '50K+ views',
+    },
+    {
+      title: 'BazaarBook Full App Demo',
+      description: 'Complete app walkthrough — billing, khata, inventory aur reports.',
+      youtubeId: 'LONG_VIDEO_ID_HERE',
+      aspect: 'horizontal' as const,
+      duration: '5:30',
+      badge: 'Full Demo',
+      emoji: '🚀',
+      stats: '25K+ views',
+    },
+  ];
+
   return (
-    <section
-      id="videos"
-      className="bg-white py-16 sm:py-20 lg:py-24"
-    >
+    <section id="videos" className="bg-gradient-to-b from-white via-stone-50/50 to-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="scroll-reveal mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-700 ring-1 ring-brand-100">
-            <Play className="h-3.5 w-3.5" />
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-50 to-accent-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-700 ring-1 ring-brand-100">
+            <Sparkles className="h-3.5 w-3.5" />
             Video Guide
           </span>
 
@@ -3550,70 +3664,239 @@ function VideosSection() {
           </p>
         </div>
 
-        {/* TWO VIDEO CARDS */}
-        <div className="mt-12 grid items-start gap-8 lg:grid-cols-2">
-          {VIDEOS.map((video, index) => {
-            const isVertical = video.aspect === 'vertical';
-
-            return (
-              <div
-                key={video.title}
-                className={`scroll-reveal ${
-                  index === 1 ? 'scroll-reveal-delay-1' : ''
-                }`}
-              >
-                {/* Video Card */}
-                <div className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-lg">
-                  {/* Video */}
-                  <div
-                    className={`relative w-full overflow-hidden bg-slate-950 ${
-                      isVertical
-                        ? 'mx-auto aspect-[9/16] max-w-[360px]'
-                        : 'aspect-video'
-                    }`}
-                  >
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                      title={video.title}
-                      className="absolute inset-0 h-full w-full border-0"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
-
-                  {/* Video Info */}
-                  <div className="p-5 sm:p-6">
-                    <div className="flex items-start gap-3">
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-600">
-                        <Play className="h-5 w-5 fill-current" />
-                      </div>
-
-                      <div>
-                        <h3 className="font-display text-lg font-bold text-slate-900">
-                          {video.title}
-                        </h3>
-
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                          {video.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        {/* Video Cards Grid */}
+        <div className="mt-12 grid items-start gap-6 lg:grid-cols-2 lg:gap-8">
+          {VIDEOS.map((video, index) => (
+            <div
+              key={video.title}
+              className={`scroll-reveal ${index === 1 ? 'scroll-reveal-delay-1' : ''}`}
+            >
+              <VideoCard video={video} onPlay={() => setActiveVideo(video.youtubeId)} />
+            </div>
+          ))}
         </div>
 
         {/* Small note */}
         <p className="scroll-reveal mt-8 text-center text-xs text-slate-400">
-          Videos directly BazaarBook landing page par play honge.
+          Videos BazaarBook landing page par directly play honge — bina YouTube par jaaye.
         </p>
       </div>
+
+      {/* Video Lightbox */}
+      {activeVideo && (
+        <VideoLightbox
+          youtubeId={activeVideo}
+          onClose={() => setActiveVideo(null)}
+        />
+      )}
     </section>
   );
 }
+
+/* ============================================================
+   VIDEO CARD — Custom Design
+   ============================================================ */
+
+function VideoCard({
+  video,
+  onPlay,
+}: {
+  video: {
+    title: string;
+    description: string;
+    youtubeId: string;
+    aspect: 'vertical' | 'horizontal';
+    duration: string;
+    badge: string;
+    emoji: string;
+    stats: string;
+  };
+  onPlay: () => void;
+}) {
+  const isVertical = video.aspect === 'vertical';
+  const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
+  const fallbackUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+
+  return (
+    <div className="group relative overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-lg transition-all duration-500 hover:-translate-y-1 hover:border-brand-200 hover:shadow-2xl hover:shadow-brand-500/10">
+      {/* Thumbnail area */}
+      <button
+        type="button"
+        onClick={onPlay}
+        aria-label={`Play ${video.title}`}
+        className={`relative w-full overflow-hidden bg-slate-900 ${
+          isVertical ? 'aspect-[9/16] max-h-[500px]' : 'aspect-video'
+        }`}
+      >
+        {/* Thumbnail image */}
+        <img
+          src={thumbnailUrl}
+          alt={video.title}
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = fallbackUrl;
+          }}
+          className="absolute inset-0 h-full w-full scale-105 object-cover opacity-90 transition-transform duration-700 group-hover:scale-110"
+        />
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent" />
+
+        {/* Top badges */}
+        <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-700 shadow-lg backdrop-blur">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-500" />
+            {video.badge}
+          </span>
+
+          <span className="rounded-full bg-slate-950/70 px-2.5 py-1.5 text-[10px] font-bold text-white backdrop-blur ring-1 ring-white/10">
+            {video.duration}
+          </span>
+        </div>
+
+        {/* Center play button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative">
+            {/* Animated ring */}
+            <span className="absolute inset-0 -m-4 animate-ping rounded-full bg-white/20" />
+            <span className="absolute inset-0 -m-2 rounded-full bg-white/10" />
+
+            {/* Play button */}
+            <div className="relative grid h-20 w-20 place-items-center rounded-full bg-white shadow-2xl ring-4 ring-white/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-600">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="ml-1 h-8 w-8 text-brand-600 transition-colors group-hover:text-white"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom info */}
+        <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 text-white">
+          <div className="flex items-center gap-2">
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-white/15 text-lg backdrop-blur ring-1 ring-white/20">
+              {video.emoji}
+            </span>
+            <div className="text-left">
+              <p className="text-[10px] font-bold uppercase tracking-wider text-white/70">
+                {video.stats}
+              </p>
+              <p className="text-xs font-semibold text-white/90">
+                Watch now →
+              </p>
+            </div>
+          </div>
+        </div>
+      </button>
+
+      {/* Info section */}
+      <div className="p-5 sm:p-6">
+        <div className="flex items-start gap-3">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-md">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-5 w-5">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <h3 className="font-display text-lg font-bold text-slate-900">
+              {video.title}
+            </h3>
+
+            <p className="mt-1 text-sm leading-relaxed text-slate-600">
+              {video.description}
+            </p>
+
+            <button
+              type="button"
+              onClick={onPlay}
+              className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 transition hover:gap-2.5 hover:text-brand-700"
+            >
+              Video dekhein
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="h-3.5 w-3.5">
+                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   VIDEO LIGHTBOX — Premium Modal
+   ============================================================ */
+
+function VideoLightbox({
+  youtubeId,
+  onClose,
+}: {
+  youtubeId: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/95 p-4 backdrop-blur-md animate-fade-in"
+      onClick={onClose}
+    >
+      {/* Close button */}
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Band karein"
+        className="absolute right-4 top-4 z-10 grid h-11 w-11 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/20 hover:ring-white/40 sm:right-6 sm:top-6"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
+          <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
+        </svg>
+      </button>
+
+      {/* Video container */}
+      <div
+        className="relative w-full max-w-5xl animate-scale-in"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Glow effect */}
+        <div className="absolute -inset-4 rounded-[40px] bg-gradient-to-r from-brand-500/20 via-accent-500/20 to-lime-500/20 blur-3xl" />
+
+        <div className="relative overflow-hidden rounded-3xl bg-black shadow-2xl ring-1 ring-white/10">
+          <div className="relative aspect-video">
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1`}
+              title="BazaarBook video"
+              className="absolute inset-0 h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
 
 /* ============================================================
    TESTIMONIALS
