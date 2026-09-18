@@ -1,0 +1,340 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+@layer base {
+  body {
+    @apply bg-stone-50 text-slate-900 antialiased;
+  }
+}
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2
+      font-semibold rounded-full transition
+      active:scale-95 disabled:opacity-50;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+
+  .btn-md {
+    @apply px-5 py-2.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700;
+  }
+
+  .btn-outline {
+    @apply btn bg-white text-slate-700
+      border border-stone-200 hover:bg-stone-50;
+  }
+
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-stone-100;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-500 text-white;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-2xl
+      bg-white border border-stone-200
+      text-sm outline-none
+      focus:border-brand-500;
+  }
+
+  .card {
+    @apply bg-white rounded-3xl
+      border border-stone-200/70 shadow-sm;
+  }
+
+  .container-app {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6;
+  }
+}
+
+/* ============================================================
+   BILL PRINT
+   ============================================================ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  body {
+    background: white;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .bill-print-area,
+  .bill-print-area * {
+    visibility: visible;
+  }
+
+  .bill-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   PWA / MOBILE
+   ============================================================ */
+
+/* Prevent iOS input auto zoom */
+input,
+textarea,
+select,
+button {
+  font-size: 16px;
+}
+
+/* ============================================================
+   HTML
+   ============================================================ */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* ============================================================
+   BODY
+   ============================================================ */
+
+body {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Horizontal bounce only */
+  overscroll-behavior-x: none;
+
+  /* iOS smooth scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================================
+   ROOT
+   ============================================================ */
+
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* ============================================================
+   TOUCH / TAP
+   ============================================================ */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* ============================================================
+   TEXT SELECTION
+   ============================================================ */
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* ============================================================
+   SCROLL ANIMATION
+   ============================================================ */
+
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.in-view {
+  animation: slide-up-fade 0.6s ease-out forwards;
+}
+
+/* ============================================================
+   MOBILE MENU — SLIDE FROM RIGHT
+   ============================================================ */
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.25s ease-out forwards;
+}
+
+/* ============================================================
+   MOBILE MENU — BACKDROP
+   ============================================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+/* ============================================================
+   TEXT BALANCE
+   ============================================================ */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+
+
+/* ============================================================
+   SCROLL REVEAL ANIMATION
+   ============================================================ */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+}
+
+.scroll-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-delay-1 {
+  transition-delay: 0.12s;
+}
+
+.scroll-reveal-delay-2 {
+  transition-delay: 0.22s;
+}
+
+.scroll-reveal-delay-3 {
+  transition-delay: 0.32s;
+}
+
+/* Mobile menu */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.25s ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.25s ease-out forwards;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-slide-in-right,
+  .animate-slide-down {
+    animation: none;
+  }
+}
