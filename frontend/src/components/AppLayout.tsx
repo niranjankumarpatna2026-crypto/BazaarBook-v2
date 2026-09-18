@@ -150,7 +150,7 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import { Home, Receipt, Plus, Users, Package, BarChart3, Settings, Crown, LogOut } from 'lucide-react';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/features/auth/AuthContext';
 import { ROUTES } from '@/lib/constants';
 import { BrandLogo } from '@/components/BrandLogo';
 

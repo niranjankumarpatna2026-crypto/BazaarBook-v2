@@ -807,7 +807,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { inr, dateHi } from '@/lib/format';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/features/auth/AuthContext';
 import { api } from '@/lib/api';
 
 // ============ PLANS ============

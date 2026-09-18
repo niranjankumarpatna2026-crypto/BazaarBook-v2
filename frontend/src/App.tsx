@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
-import { AuthProvider, useAuth } from './context/AuthContext';
+// import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider, useAuth } from '@/features/auth/AuthContext';
 import { ROUTES } from './lib/constants';
 
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import DashboardPage from './pages/DashboardPage';
+// import DashboardPage from './pages/DashboardPage_2';
+import DashboardPage from './pages/app/DashboardPage';
 import BillsPage from './pages/BillsPage';
 import NewBillPage from './pages/NewBillPage';
 import InventoryPage from './pages/InventoryPage';

@@ -5,7 +5,7 @@ import {
   LogOut, Check, X, ChevronRight
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/features/auth/AuthContext';
 import { inr } from '@/lib/format';
 import { api } from '@/lib/api';
 
