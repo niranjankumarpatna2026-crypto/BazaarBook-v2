@@ -15,6 +15,8 @@ import subscriptionRoutes from './routes/subscription.js';
 import webhookRoutes from './routes/webhooks.js';
 import adminRoutes from './routes/admin/index.js';
 
+import dashboardRoutes from './routes/dashboard.js';
+
 export function createApp() {
   const app = express();
   app.set('trust proxy', 1);
@@ -56,6 +58,7 @@ export function createApp() {
   app.use('/api/products', productRoutes);
   app.use('/api/customers', customerRoutes);
   app.use('/api/bills', billRoutes);
+  app.use('/api/dashboard', dashboardRoutes);   // ← YE ADD KARO
   app.use('/api/reports', reportRoutes);
   app.use('/api/settings', settingsRoutes);
   app.use('/api/subscription', subscriptionRoutes);

@@ -30,3 +30,5 @@ Thumbs.db
 
 backend/reset-admin.mjs
 backend/reset_admin_pasword.mjs
+.vercel
+.env*
