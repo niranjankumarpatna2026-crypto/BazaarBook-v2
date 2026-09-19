@@ -9,7 +9,9 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 // import DashboardPage from './pages/DashboardPage_2';
 import DashboardPage from './pages/app/DashboardPage';
+// import BillsPage from './pages/BillsPage_Final';
 import BillsPage from './pages/BillsPage';
+
 import NewBillPage from './pages/NewBillPage';
 import InventoryPage from './pages/InventoryPage';
 import CustomersPage from './pages/CustomersPage';
@@ -23,6 +25,8 @@ import { AppLayout } from './components/AppLayout';
 
 import { InstallBanner } from '@/features/pwa/InstallBanner';
 import { OfflineIndicator } from '@/features/pwa/OfflineIndicator';
+
+
 
 
 function Protected({ children }: { children: any }) {
@@ -41,6 +45,7 @@ function AppRouter() {
 
       <Route path={ROUTES.dashboard} element={<Protected><DashboardPage /></Protected>} />
       <Route path={ROUTES.bills} element={<Protected><BillsPage /></Protected>} />
+      <Route path={`${ROUTES.bills}/:id`} element={<Protected><BillsPage /></Protected>} />
       <Route path={ROUTES.newBill} element={<Protected><NewBillPage /></Protected>} />
       <Route path={ROUTES.inventory} element={<Protected><InventoryPage /></Protected>} />
       <Route path={ROUTES.customers} element={<Protected><CustomersPage /></Protected>} />
